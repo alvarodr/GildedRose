@@ -9,6 +9,12 @@ public class AgedBrie extends ItemFactory {
 
     @Override
     public void updateQuality() {
-
+        if (this.quality < 50) {
+            this.increaseQuality();
+        }
+        this.decreaseExpiredCounterDay();
+        if (this.isExpiredProduct() && this.quality < 50) {
+            this.increaseQuality();
+        }
     }
 }

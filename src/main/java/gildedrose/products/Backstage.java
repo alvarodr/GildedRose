@@ -9,6 +9,10 @@ public class Backstage extends ItemFactory {
 
     @Override
     public void updateQuality() {
-
+        if (this.quality < 50) increaseQuality();
+        if (this.sellIn < 11 && this.quality < 50) increaseQuality();
+        if (this.sellIn < 6 && this.quality < 50) increaseQuality();
+        decreaseExpiredCounterDay();
+        if (this.isExpiredProduct()) this.setQuality(0);
     }
 }

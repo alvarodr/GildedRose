@@ -7,8 +7,6 @@ import java.lang.reflect.InvocationTargetException;
 
 public abstract class ItemFactory extends Item {
 
-    public static final int MAX_QUALITY = 50;
-
     private static final int ONE_UNIT = 1;
 
     public ItemFactory(String name, int sellIn, int quality) {

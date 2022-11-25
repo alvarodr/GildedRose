@@ -9,6 +9,12 @@ public class ElixirMongoose extends ItemFactory {
 
     @Override
     public void updateQuality() {
-
+        if (this.hasQuality()) {
+            decreaseQuality();
+        }
+        decreaseExpiredCounterDay();
+        if (this.isExpiredProduct() && this.hasQuality()) {
+            decreaseQuality();
+        }
     }
 }
