@@ -1,5 +1,6 @@
 package gildedrose;
 
+import gildedrose.factory.ItemFactory;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
 
@@ -20,5 +21,21 @@ public class GildedRoseTest {
 
         assertThat(item.sellIn).isEqualTo(expectedSellIn);
         assertThat(item.quality).isEqualTo(expectedQuality);
+    }
+
+    @ParameterizedTest
+    @CsvFileSource(resources = "/golden-master.input", delimiter = ';')
+    public void golden_master_testing_refactor(String itemName,
+                                      int initialSellIn,
+                                      int initialQuality,
+                                      int expectedSellIn,
+                                      int expectedQuality) {
+        Item item = new Item(itemName, initialSellIn, initialQuality);
+        ItemFactory itemFactory = ItemFactory.getFactory(item);
+
+        itemFactory.updateQuality();
+
+        assertThat(itemFactory.sellIn).isEqualTo(expectedSellIn);
+        assertThat(itemFactory.quality).isEqualTo(expectedQuality);
     }
 }
